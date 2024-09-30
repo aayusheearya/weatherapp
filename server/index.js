@@ -2,26 +2,21 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 
-// Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 const PORT = 5000;
 
-// Serve static files from the 'client' directory
-app.use(express.static(path.join(__dirname, '../client'))); // Adjusted path
+app.use(express.static(path.join(__dirname, '../')));
 
-// Serve index.html for the root route
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client', 'index.html')); // Adjusted path
+    res.sendFile(path.join(__dirname, '../', 'index.html'));
 });
 
-// Example API route for weather
 app.get('/api/weather', async (req, res) => {
     const city = req.query.city;
-    const apiKey = process.env.API_KEY; // Access the API key from environment variables
+    const apiKey = process.env.API_KEY;
 
-    // Make a request to the OpenWeather API
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
 
     if (!response.ok) {
