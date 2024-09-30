@@ -4,7 +4,7 @@ let isCelsius = true;
 // Function to fetch weather data
 const getWeather = async (city) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/weather?city=${city}`);
+        const response = await fetch(`https://aayusheearya.github.io/weatherapp/api/weather?city=${city}`);
         if (!response.ok) {
             throw new Error('City not found');
         }
